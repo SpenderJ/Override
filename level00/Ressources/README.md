@@ -7,7 +7,7 @@ disass main
 
 0x080484e7 <+83>:	cmp    $0x149c,%eax
 ```
-En traduisant le main on comprend que'il y a un scanf qui attend un input.
+En traduisant le main on comprend qu'il y a un scanf qui attend un input.
 Cet input est comparé à la valeur 0x149c, qu'on traduit en décimal.
 0x149c en decimal donne 5276.
 

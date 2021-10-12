@@ -6,17 +6,16 @@ int auth(char *login, unsigned int serial)
   len = strcspn(login, "\n");
   login[len] = '\0';
   len = strnlen(login, 0x20);
-  if (len < 6)
+  if (len <= 5)
     return 1;
-  if (ptrace(PTRACE_TRACEME) == -1)
+  if (ptrace(PTRACE_TRACEME, 0, 1, 0) == -1)
   {
     puts("\x1b[32m.---------------------------.");
     puts("\x1b[31m| !! TAMPERING DETECTED !!  |");
     puts("\x1b[32m\'---------------------------\'");
-    ret = 1;
+    return 1;
   }
-  else
-    ret = (serial == hash(login));
+  ret = (serial == hash(login));
   return ret;
 }
 

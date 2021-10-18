@@ -25,20 +25,21 @@ void set_msg(msg_t *msg)
 
 void set_username(msg_t *msg)
 {
-  char    *username[16];
-  size_t  idx;
-
+  char    buffer[128];
+  int  i;
+  
+  bzero(buffer, 1128);
   puts(">: Enter your username");
   printf(">>: ");
-  fgets(username, 0x80, stdin);
-  idx = 0;
-  while (idx < 41 && *(username + idx))
+  fgets(buffer, 128, stdin);
+  i = 0;
+  while (i <= 40 && buffer[i] != 0)
   {
-    *(msg->username + idx) = *(username + idx);
-    idx += 1;
+    message->username[i] = buffer[i];
+    i++;
   }
 
-  printf(">: Welcome, %s", msg->username);
+  printf(">: Welcome, %s", message->username);
 }
 
 void handle_msg(void)
